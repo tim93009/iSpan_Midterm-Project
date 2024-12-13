@@ -1,0 +1,11 @@
+以繁體中文回答。
+
+在程式碼中加上註解。
+
+===
+
+我想只用 html, css, javascript
+寫一個 Twitch聊天翻譯工具，
+並使用免費且不限次數的API。
+
+html, css, javascript 分開寫。

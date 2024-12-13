@@ -1,0 +1,512 @@
+以下分別為a002.html、a002.css、a002.js
+
+============================
+
+html：
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>翻譯</title>
+</head>
+
+<body>
+  <div id="chat-container">
+    <!-- 語言選擇區域 -->
+    <div id="language-selection">
+      <label for="input-language">輸入語言:</label>
+      <select id="input-language">
+        <option value="en">英文</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="ja">日文</option>
+        <option value="es">西班牙文</option>
+      </select>
+      
+      <!-- 雙向箭頭按鈕 -->
+      <button id="swap-languages" title="交換語言">↔️</button> 
+
+      <label for="output-language">輸出語言:</label>
+      <select id="output-language">
+        <option value="zh-TW">繁體中文</option>
+        <option value="en">英文</option>
+        <option value="ja">日文</option>
+        <option value="es">西班牙文</option>
+      </select>
+    </div>
+
+    <!-- 翻譯 API 選擇區域 -->
+    <div id="api-selection">
+      <label for="api-source">選擇翻譯 API:</label>
+      <select id="api-source">
+        <option value="google">Google 翻譯</option>
+        <option value="chatgpt">ChatGPT 翻譯</option>
+        <option value="deepl">DeepL 翻譯</option>
+      </select>
+    </div>
+
+    <!-- 剩餘使用次數顯示區域 -->
+    <div id="usage-info"></div>
+
+    <!-- 中間內容區域 -->
+    <div id="content-area">
+      <!-- 左邊：輸入區域 -->
+      <div id="input-area">
+        <textarea id="chat-input" placeholder="輸入聊天訊息..."></textarea>
+      </div>
+
+      <!-- 右邊：翻譯結果顯示區域 -->
+      <div id="output-area">
+        <div id="loading" style="display: none;">
+          <span>翻譯中...</span>
+          <div class="spinner"></div>
+        </div>
+        <div id="chat-output"></div>
+      </div>
+    </div>
+
+    <!-- 翻譯按鈕區域 -->
+    <div id="translate-input">
+      <button id="translate-button">翻譯</button>
+      <button id="clear-button">清空</button> <!-- 清空按鈕 -->
+    </div>
+  </div>
+</body>
+
+<!-- 引入bootstrap -->
+<script src="../share/header.js"></script>
+
+<!-- 引入導覽列 -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("../share/navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.body.insertAdjacentHTML('afterbegin', data);
+      });
+  });
+</script>
+
+<link rel="stylesheet" href="a002.css">
+<script src="a002.js"></script>
+
+</html>
+
+
+
+====================================
+
+css：
+
+
+
+
+
+
+
+
+ /* 設定頁面基本樣式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column; /* 改為垂直排列 */
+    gap: 20px; /* 左右間隔 */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 左右區域樣式 */
+#input-area,
+#output-area {
+    width: 45%; /* 設定左右區域寬度 */
+}
+
+/* 語言選擇區域 */
+#language-selection {
+    display: flex;
+    justify-content: center; /* 語言選擇置中排列 */
+    gap: 10px; /* 語言選擇之間的間距 */
+    align-items: center; /* 語言選擇與按鈕對齊 */
+    width: 100%;
+}
+
+#language-selection label {
+    margin-right: 5px;
+}
+
+/* 中間內容區域 */
+#content-area {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+/* 輸入框 */
+#chat-input {
+    width: 100%;
+    height: 300px; /* 與輸出框高度相同 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* 禁止使用者調整大小 */
+    padding: 10px;
+}
+
+/* 輸出框 */
+#chat-output {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fafafa;
+    margin-bottom: 10px;
+}
+
+#chat-output p {
+    margin: 0 0 10px;
+}
+
+/* 翻譯按鈕區域 */
+#translate-input {
+    display: flex;
+    justify-content: center; /* 按鈕置中排列 */
+    gap: 20px; /* 按鈕之間的間距 */
+}
+
+textarea,
+button {
+    font-size: 16px;
+    padding: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 翻譯中的容器樣式 */
+#loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 300px; /* 與輸出框一致 */
+    color: #555;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 翻譯中的動畫樣式 */
+.spinner {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 語言交換按鈕樣式 */
+#swap-languages {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#swap-languages:hover {
+    transform: scale(1.2);
+}
+
+/* 翻譯 API 選擇區域樣式 */
+#api-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+#api-selection label {
+    margin-right: 5px;
+}
+
+/* 使用次數顯示樣式 */
+#usage-info {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+}
+  
+
+
+==============================
+js：
+
+
+
+
+
+
+// 定義聊天輸出與按鈕的 DOM 元素
+const chatOutput = document.getElementById('chat-output');
+const chatInput = document.getElementById('chat-input');
+const translateButton = document.getElementById('translate-button');
+const clearButton = document.getElementById('clear-button');
+const inputLanguage = document.getElementById('input-language');
+const outputLanguage = document.getElementById('output-language');
+const swapLanguagesButton = document.getElementById('swap-languages'); // 雙向箭頭按鈕
+const apiSourceSelect = document.getElementById('api-source'); // 選擇 API 來源
+const usageInfo = document.getElementById('usage-info'); // 顯示剩餘次數區域
+
+// 定義翻譯 API 的 URL
+const apiUrls = {
+    mymemory: 'https://api.mymemory.translated.net/get',
+    google: 'https://translation.googleapis.com/language/translate/v2',
+    chatgpt: 'https://api.openai.com/v1/chat/completions', // 需要 API 金鑰
+    deepl: 'https://api-free.deepl.com/v2/translate', // DeepL 免費 API (需要 API 金鑰)
+};
+
+// 用於追蹤 API 使用次數的計數器
+let googleUsageCount = 0; // Google 翻譯使用次數
+let chatGptUsageCount = 0; // ChatGPT 翻譯使用次數
+let deeplUsageCount = 0; // DeepL 翻譯使用次數
+
+// 顯示剩餘使用次數
+function updateUsageInfo(apiSource) {
+    if (apiSource === 'mymemory') {
+      usageInfo.innerHTML = `MyMemory 翻譯剩餘次數: 無限制`;
+    } else if (apiSource === 'google') {
+      usageInfo.innerHTML = `Google 翻譯剩餘次數: 無限制`;
+    } else if (apiSource === 'chatgpt') {
+      usageInfo.innerHTML = `ChatGPT 翻譯剩餘次數: ${100 - chatGptUsageCount} (上限 100 次)`;
+    } else if (apiSource === 'deepl') {
+      usageInfo.innerHTML = `DeepL 翻譯剩餘次數: ${500000 - deeplUsageCount} 字符 (每月免費配額)`;
+    }
+  }
+
+// 監聽 API 選擇改變
+apiSourceSelect.addEventListener('change', () => {
+    const apiSource = apiSourceSelect.value;
+    updateUsageInfo(apiSource);  // 當 API 選擇改變時，更新剩餘次數
+});
+  
+// 監聽按鈕點擊事件
+translateButton.addEventListener('click', () => {
+    const message = chatInput.value.trim(); // 獲取輸入訊息
+    if (!message) return; // 如果為空，則不執行
+  
+    // 獲取選擇的語言對
+    const inputLang = inputLanguage.value;
+    const outputLang = outputLanguage.value;
+    const apiSource = apiSourceSelect.value; // 獲取選擇的 API 來源
+    // 取得翻譯中的 DOM 元素
+    const loadingIndicator = document.getElementById('loading');
+  
+    // 顯示翻譯中的動畫
+    loadingIndicator.style.display = 'flex';
+    chatOutput.style.display = 'none';
+  
+    // 優先使用 MyMemory API
+    if (apiSource === 'mymemory') {
+      const mymemoryApiUrl = apiUrls.mymemory;
+      fetch(`${mymemoryApiUrl}?q=${encodeURIComponent(message)}&langpair=${inputLang}|${outputLang}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            throw new Error(data.error.message);
+          }
+          const translatedText = data.responseData.translatedText;
+          chatOutput.innerHTML = translatedText.replace(/\n/g, '<br>');
+          chatOutput.style.display = 'block';
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+        })
+        .catch(error => {
+          console.error('翻譯失敗:', error);
+          alert('翻譯服務目前無法使用，請稍後再試。');
+        })
+        .finally(() => {
+          updateUsageInfo('mymemory'); // 更新剩餘次數
+          loadingIndicator.style.display = 'none';
+        });
+    } else if (apiSource === 'google') {
+      const googleApiKey = 'YOUR_GOOGLE_API_KEY'; // 用戶需填寫自己的 Google API 密鑰
+      fetch(`${apiUrls.google}?key=${googleApiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          q: message,
+          source: inputLang,
+          target: outputLang
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            throw new Error(data.error.message);
+          }
+          const translatedText = data.data.translations[0].translatedText;
+          chatOutput.innerHTML = translatedText.replace(/\n/g, '<br>');
+          chatOutput.style.display = 'block';
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+        })
+        .catch(error => {
+          console.error('翻譯失敗:', error);
+          alert('翻譯服務目前無法使用，請稍後再試。');
+        })
+        .finally(() => {
+          googleUsageCount++;
+          updateUsageInfo('google'); // 更新剩餘次數
+          loadingIndicator.style.display = 'none';
+        });
+    } else if (apiSource === 'chatgpt') {
+      const apiKey = 'YOUR_OPENAI_API_KEY'; // 用戶需填寫自己的 OpenAI API 密鑰
+      fetch(apiUrls.chatgpt, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: message }],
+          max_tokens: 500
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          const translatedText = data.choices[0].message.content;
+          chatOutput.innerHTML = translatedText.replace(/\n/g, '<br>');
+          chatOutput.style.display = 'block';
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+        })
+        .catch(error => {
+          console.error('翻譯失敗:', error);
+          alert('翻譯服務目前無法使用，請稍後再試。');
+        })
+        .finally(() => {
+          chatGptUsageCount++;
+          updateUsageInfo('chatgpt'); // 更新剩餘次數
+          loadingIndicator.style.display = 'none';
+        });
+    } else if (apiSource === 'deepl') {
+      const apiKey = 'YOUR_DEEPL_API_KEY'; // 用戶需填寫自己的 DeepL API 密鑰
+      fetch(apiUrls.deepl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+          auth_key: apiKey,
+          text: message,
+          source_lang: inputLang,
+          target_lang: outputLang
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          const translatedText = data.translations[0].text;
+          chatOutput.innerHTML = translatedText.replace(/\n/g, '<br>');
+          chatOutput.style.display = 'block';
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+        })
+        .catch(error => {
+          console.error('翻譯失敗:', error);
+          alert('翻譯服務目前無法使用，請稍後再試。');
+        })
+        .finally(() => {
+          deeplUsageCount++;
+          updateUsageInfo('deepl'); // 更新剩餘次數
+          loadingIndicator.style.display = 'none';
+        });
+    }
+});
+
+// 監聽清空按鈕點擊事件
+clearButton.addEventListener('click', () => {
+    chatInput.value = ''; // 清空輸入框
+    chatOutput.innerHTML = ''; // 清空聊天輸出區域
+    usageInfo.innerHTML = ''; // 清空剩餘使用次數
+});
+
+// 監聽 Enter 鍵事件，當按下 Enter 時觸發翻譯按鈕的點擊事件
+chatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // 防止換行
+        translateButton.click(); // 觸發翻譯按鈕的點擊事件
+    }
+});
+
+// 初次載入頁面時顯示 MyMemory 的使用次數
+updateUsageInfo('mymemory');
+
+// 監聽交換語言按鈕點擊事件
+swapLanguagesButton.addEventListener('click', () => {
+    const temp = inputLanguage.value;
+    inputLanguage.value = outputLanguage.value;
+    outputLanguage.value = temp;
+});
+
+
+
+
+
+
+=========================
+
+在有新增或修改程式的地方標上註解。
+
+以繁體中文回答。
+
+===========================
+
+我希望當API選項改變時，剩餘次數所對應的api名稱與剩餘次數就要更改
+
+
+
+
+
