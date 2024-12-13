@@ -1,0 +1,81 @@
+/* 設定全域的基本樣式 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* 文章列表的樣式 */
+.article-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.article-item h2 {
+  font-size: 1.5em;
+}
+
+.article-item p {
+  color: #666;
+}
+
+/* 新增文章按鈕的樣式 */
+#addArticleBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+}
+
+#addArticleBtn:hover {
+  background-color: #0056b3;
+}
+
+/* 編輯與刪除按鈕樣式 */
+.article-item button {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.article-item .edit-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.article-item .edit-btn:hover {
+  background-color: #218838;
+}
+
+.article-item .delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.article-item .delete-btn:hover {
+  background-color: #c82333;
+}
+

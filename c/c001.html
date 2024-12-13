@@ -6,7 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    HTML
+  <!-- 顯示文章列表區域 -->
+  <div class="container">
+    <h1>文章管理系統</h1>
+    <button id="addArticleBtn" class="btn btn-primary">新增文章</button> <!-- 新增文章按鈕 -->
+    
+    <!-- 文章列表 -->
+    <div id="articleList">
+      <!-- 文章會在這裡動態顯示 -->
+    </div>
+  </div>
 </body>
 
 <!-- 引入bootstrap -->
@@ -22,5 +31,8 @@
       });
   });
 </script>
+
+<link href="c001.css" rel="stylesheet">
+<script src="c001.js"></script>
 
 </html>
