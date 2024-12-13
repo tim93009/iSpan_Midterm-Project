@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>丸子賽車遊戲</title>
+</head>
+
+<body>
+    <div class="game-container">
+        <h1>丸子賽車遊戲</h1>
+        <div id="character-selection">
+          <p>選擇你的丸子：</p>
+          <button class="character" data-type="花枝丸">花枝丸</button>
+          <button class="character" data-type="貢丸">貢丸</button>
+          <button class="character" data-type="虱目魚丸">虱目魚丸</button>
+        </div>
+        <p id="countdown">剩餘時間: 10 秒</p> <!-- 倒計時顯示 -->
+        <div class="game-area">
+          <div id="player"></div>
+        </div>
+        <p id="score-board">分數: 0</p>
+        <p id="lives">生命: 2</p>
+        <button id="start-btn">開始遊戲</button>
+    </div>      
+</body>
+
+<link href="test.css" rel="stylesheet">
+<script src="test.js"></script>
+
+</html>

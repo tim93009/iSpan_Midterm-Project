@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden; /* 禁止水平滾動 */
+    overflow-y: auto; /* 增加垂直方向滾動條 */
+    background-color: black; /* 初始背景顏色 */
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('image/coding.png'); /* 替換為你的背景圖片路徑 */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateY(-100%); /* 初始狀態：圖片在螢幕外 */
+    animation: slideIn 1s ease-out forwards; /* 動畫效果 */
+    z-index: -1; /* 確保背景圖片在最底層 */
+    filter: blur(5px) brightness(0.5); /* 添加模糊和降低亮度 */
+}
+
+/* 可選：加入半透明遮罩 */
+.background-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 半透明黑色遮罩 */
+    z-index: -1; /* 確保遮罩在背景上層 */
+}
+
+/* 背景圖片動畫效果 */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50%); /* 從螢幕頂部滾入 */
+    }
+
+    100% {
+        transform: translateY(0); /* 停留在螢幕內 */
+    }
+}
+
+/* 預設隱藏內容，等待標題動畫結束後顯示 */
+.content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 加入陰影 */
+    text-align: center;
+    padding: 5% 10%; /* 加入水平內距，防止文字靠邊 */
+    box-sizing: border-box; /* 確保 padding 不會影響元素寬度 */
+    height: auto; /* 調整為自適應高度 */
+    opacity: 0; /* 預設隱藏內容 */
+    visibility: hidden; /* 預設隱藏內容 */
+    transition: opacity 1s ease-in-out; /* 加入過渡效果 */
+}
+
+#quote-text {
+    word-break: break-word; /* 長文字自動換行 */
+    overflow-wrap: break-word; /* 支援舊版瀏覽器 */
+}
+
+#person-image {
+    width: 200px;
+    height: 200px;
+    display: block;
+    object-fit: cover; /* 圖片自動縮放，保證不裁切 */
+    object-position: top; /* 優先顯示圖片的上部，避免裁切頭部 */
+    border-radius: 50%; /* 圓形邊框 */
+    margin-bottom: 10px; /* 保證圖片與底部有適當距離 */
+    animation: imageEffect 2s ease-in-out; /* 添加 infinite 属性 */
+}
+
+.person-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 人物圖片輪播區域 */
+.person-carousel {
+    position: relative;
+    margin-top: 10px; /* 確保圖片與詩詞之間有距離 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px; /* 確保容器的高度一致 */
+    overflow: hidden; /* 防止內容溢出 */
+}
+
+/* 說話顯示區域 */
+.quote-display {
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre; /* 保留空格與換行 */
+    display: inline-flex; /* 使用 inline-flex 確保文字與光標分開控制 */
+    align-items: center; /* 確保垂直對齊 */
+    justify-content: center; /* 水平居中 */
+    overflow: hidden; /* 防止溢出 */
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    padding: 5px 20px; /* 減少左右內距 */
+    border-radius: 10px; /* 圓角邊框 */
+    position: relative; /* 添加相對定位 */
+    line-height: 0.4rem; /* 調整行高確保垂直對齊 */
+    text-align: center; /* 保持內容居中 */
+    margin-top: 10px;
+}
+
+
+
+/* 文字內部的光標樣式 */
+.quote-display::after {
+    content: ''; /* 光標為獨立元素 */
+    display: inline-block; /* 確保光標位置可控制 */
+    width: 2px;
+    height: 1.2em; /* 與文字高度一致 */
+    background-color: white; /* 光標顏色 */
+    margin-left: 5px; /* 與文字保持適當距離 */
+    animation: blink 0.5s step-end infinite; /* 光標閃爍動畫 */
+}
+
+/* 圖片出現特效 */
+@keyframes imageEffect {
+    0% {
+        opacity: 0; /* 從透明開始 */
+        transform: scale(0.5) rotate(-15deg); /* 縮小並稍微旋轉 */
+        transform-origin: center center; /* 變換圍繞圖片中心 */
+    }
+
+    50% {
+        opacity: 0.5; /* 半透明 */
+        transform: scale(1.1) rotate(5deg); /* 放大並稍微旋轉另一方向 */
+        transform-origin: center center;
+    }
+
+    100% {
+        opacity: 1; /* 完全顯示 */
+        transform: scale(1) rotate(0); /* 恢復正常尺寸和方向 */
+        transform-origin: center center;
+    }
+}
+
+/* 光標閃爍 */
+@keyframes blink {
+    50% {
+        opacity: 0; /* 閃爍效果 */
+    }
+}
+
+.hidden { /* 讓 hidden 隱藏所有子內容 */
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* 設置包裹 h1 的容器顏色 */
+.title-container {
+    color: white; /* 這裡設置文字顏色為白色，保證不受 body 繼承影響 */
+    text-align: center;
+    padding-top: 50px; /* 加上額外的間隔，確保標題不與導覽列重疊 */
+}
+
+/* 標題樣式 */
+h1 {
+    opacity: 0; /* 初始狀態為隱藏 */
+    transform: translateY(-50px); /* 初始位置在螢幕外 */
+    visibility: hidden; /* 標題初始隱藏 */
+    text-align: center; /* 置中顯示 */
+    color: white; /* 文字顏色為白色 */
+    font-size: 3rem; /* 調整字體大小 */
+    font-weight: bold; /* 加粗字體 */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8); /* 增強陰影，讓白色文字更明顯 */
+    animation: slideInTitle 2s ease-out forwards; /* 新增標題動畫 */
+}
+
+/* 標題動畫 */
+@keyframes slideInTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* 停留在最終位置 */
+        visibility: visible; /* 顯示標題 */
+    }
+}

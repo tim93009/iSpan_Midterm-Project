@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2d5c4;
+    overflow: hidden;
+  }
+  
+  .game-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .game-area {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    margin: 0 auto;
+    background: linear-gradient(#f8f9fa, #d1e9e3);
+    border: 2px solid #333;
+    overflow: hidden;
+  }
+  
+  /* 玩家 */
+  #player {
+    position: absolute;
+    bottom: 20px;
+    left: 180px;
+    width: 40px;
+    height: 40px;
+    background: url('../image/player01.png') no-repeat center/cover;
+    border-radius: 50%;
+  }
+  
+  /* 障礙物 */
+  #obstacle {
+    position: absolute;
+    top: -50px;
+    left: 100px;
+    width: 40px;
+    height: 40px;
+    background: url('obstacle.png') no-repeat center/cover;
+    border-radius: 50%;
+  }
+
+  /* 障礙物 */
+  .obstacle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border-radius: 50%;
+  }
+
+  #countdown {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ff4500;
+  }  
+
+  #character-selection {
+    margin-bottom: 20px;
+  }
+  
+  .character {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #ffe4b5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #leaderboard {
+    margin-top: 20px;
+  }
+  
+  #score-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  

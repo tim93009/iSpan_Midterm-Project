@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>運勢占卜</title>
+
+  <!-- 引入CSS樣式 -->
+  <link rel="stylesheet" href="a001.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="container animate-content">
+      <!-- 標題 -->
+      <h1>今日運勢占卜</h1>
+
+      <!-- 開始占卜按鈕 -->
+      <div class="button-wrapper">
+        <button id="start-button">開始占卜</button>
+      </div>
+
+      <!-- 顯示占卜結果 -->
+      <div id="result" class="result" style="display: none;">
+        <span class="title-text">今日運勢：</span><span id="fortune-text"></span>
+      </div>
+
+      <!-- 顯示建議 -->
+      <div id="advice" class="advice" style="display: none;">
+        <div class="advice-title">建議：</div>
+        <div class="advice-content"></div>
+      </div>
+
+      <!-- 顯示幸運好物 -->
+      <div id="lucky-item" class="lucky-item" style="display: none;">
+        <div class="lucky-title">幸運好物：</div>
+        <div class="lucky-content"></div>
+      </div>
+
+      <!-- 占卜動畫 -->
+      <div id="animation" class="animation">🔮</div>
+
+      <!-- 重新占卜按鈕 -->
+      <div class="button-wrapper-after" style="display: none;">
+        <button id="start-button-after">重新占卜</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<!-- 引入共享檔案 -->
+<script src="../share/header.js"></script>
+<script>
+  // 加載導覽列
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("../share/navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.body.insertAdjacentHTML('afterbegin', data);
+      });
+  });
+</script>
+
+<!-- 引入JS邏輯 -->
+<script src="a001.js"></script>
+
+</html>

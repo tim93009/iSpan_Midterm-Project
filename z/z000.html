@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於</title>
+</head>
+<body>
+  <header>
+    <h1>About</h1>
+  </header>
+
+  <section class="intro">
+    <div class="photo-container"> 
+        <img src="../image/me.jpg" alt="我的照片" class="profile-photo"> <!-- 使用 profile-photo 類別來控制圖片大小 -->
+    </div>
+    <h2><strong>關於我</strong></h2>
+    <p>大家好，我是許清彰，一個怪怪的人。這是我的個人網站，會不定期更新學習筆記以及無聊研究的一些東西。</p>
+  </section>
+
+  <section class="contact">
+      <h2><strong>聯絡我</strong></h2>
+      <p>如果您有任何問題，或是想與我合作，歡迎通過以下方式聯絡我：</p>
+      <ul>
+          <li>Email: <a href="mailto:tim93009@gmail.com">tim93009@gmail.com</a></li>
+      </ul>
+  </section>
+</body>
+
+<!-- 引入bootstrap -->
+<script src="../share/header.js"></script>
+
+<!-- 引入導覽列 -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("../share/navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.body.insertAdjacentHTML('afterbegin', data);
+      });
+  });
+</script>
+
+<link href="z000.css" rel="stylesheet">
+<script src="z000.js"></script>
+
+</html>

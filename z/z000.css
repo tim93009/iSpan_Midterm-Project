@@ -1,0 +1,106 @@
+/* 基本的網頁樣式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* 標題區域樣式 */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 自我介紹區域樣式 */
+section {
+    padding: 20px;
+}
+
+/* 文字標題顏色 */
+h2 {
+    color: #333;
+}
+
+/* 自我介紹區域的樣式 */
+.intro {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* 圓形的照片容器，置中 */
+.photo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* 照片樣式，圓形且自動調整大小 */
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* 保證圖片不會變形 */
+    animation: clockwise-drift 3s linear infinite; /* 添加順時針漂浮動畫 */
+    transition: transform 0.3s ease; /* 平滑過渡效果 */
+}
+
+/* 滑鼠懸停時的效果 */
+.profile-photo:hover {
+    transform: scale(1.1) rotate(0deg); /* 輕微放大，同時暫停原本的旋轉 */
+    animation-play-state: paused; /* 暫停動畫 */
+    cursor: pointer; /* 改變滑鼠指標 */
+}
+
+/* 新增順時針漂浮動畫 */
+@keyframes clockwise-drift {
+    0% {
+        transform: rotate(0deg) translateX(5px) rotate(0deg);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: rotate(180deg) translateX(10px) rotate(-180deg);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: rotate(360deg) translateX(5px) rotate(-360deg);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 聯絡方式區域樣式 */
+.contact {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* 連結的樣式 */
+.contact a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 連結 hover 樣式 */
+.contact a:hover {
+    text-decoration: underline;
+}
+
+/* 修改：添加一個容器，使用 flexbox 來置中圖片 */
+.photo-container {
+    display: flex;
+    justify-content: center; /* 置中圖片 */
+    margin-bottom: 15px;
+}
+
+

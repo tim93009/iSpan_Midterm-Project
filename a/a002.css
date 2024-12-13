@@ -1,0 +1,167 @@
+/* 設定頁面基本樣式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column; /* 改為垂直排列 */
+    gap: 20px; /* 左右間隔 */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 左右區域樣式 */
+#input-area,
+#output-area {
+    width: 45%; /* 設定左右區域寬度 */
+}
+
+/* 語言選擇區域 */
+#language-selection {
+    display: flex;
+    justify-content: center; /* 語言選擇置中排列 */
+    gap: 10px; /* 語言選擇之間的間距 */
+    align-items: center; /* 語言選擇與按鈕對齊 */
+    width: 100%;
+}
+
+#language-selection label {
+    margin-right: 5px;
+}
+
+/* 中間內容區域 */
+#content-area {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+/* 輸入框 */
+#chat-input {
+    width: 100%;
+    height: 300px; /* 與輸出框高度相同 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* 禁止使用者調整大小 */
+    padding: 10px;
+}
+
+/* 輸出框 */
+#chat-output {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fafafa;
+    margin-bottom: 10px;
+}
+
+#chat-output p {
+    margin: 0 0 10px;
+}
+
+/* 翻譯按鈕區域 */
+#translate-input {
+    display: flex;
+    justify-content: center; /* 按鈕置中排列 */
+    gap: 20px; /* 按鈕之間的間距 */
+}
+
+textarea,
+button {
+    font-size: 16px;
+    padding: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 翻譯中的容器樣式 */
+#loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 300px; /* 與輸出框一致 */
+    color: #555;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 翻譯中的動畫樣式 */
+.spinner {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 語言交換按鈕樣式 */
+#swap-languages {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#swap-languages:hover {
+    transform: scale(1.2);
+}
+
+/* 翻譯 API 選擇區域樣式 */
+#api-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+#api-selection label {
+    margin-right: 5px;
+}
+
+/* 使用次數顯示樣式 */
+#usage-info {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+}

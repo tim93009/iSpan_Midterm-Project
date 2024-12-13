@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../image/shrine.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: brightness(80%);
+    overflow-x: hidden; /* 移除水平滾動條 */
+}
+
+.content {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    /* 適當縮小與按鈕間的距離 */
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.button-wrapper {
+    margin-top: 20px;
+    /* 按鈕與標題的距離 */
+}
+
+/* 占卜後按鈕的樣式 */
+.button-wrapper-after {
+    margin-top: 20px;
+    /* 與幸運好物圖片的距離 */
+    text-align: center;
+}
+
+.button-wrapper-after button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-wrapper-after button:hover {
+    background-color: #45a049;
+}
+
+.result {
+    margin-top: 30px;
+    font-size: 1.5rem;
+}
+
+.advice {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+/* 占卜動畫樣式 */
+.animation {
+    margin-top: 30px;
+    font-size: 3rem;
+    display: none;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+img {
+    display: block;
+    margin: 20px auto; /* 圖片與按鈕保持距離 */
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+/* 美化「今日運勢」文字 */
+.result .title-text {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #ff6347; /* 番茄紅 */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    display: inline-block; /* 同一行 */
+    margin-right: 10px; /* 增加與結果的間距 */
+}
+
+/* 美化「建議」區塊 */
+.advice {
+    background: linear-gradient(45deg, #87cefa, #4682b4); /* 藍色漸層背景 */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+/* 美化「建議」標題 */
+.advice .advice-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+/* 美化「建議」內容 */
+.advice .advice-text {
+    line-height: 1.6;
+    margin-top: 5px;
+}
+
+/* 美化「幸運好物」區塊 */
+.lucky-item {
+    background: linear-gradient(45deg, #98fb98, #3cb371); /* 綠色漸層背景 */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: left; /* 左對齊 */
+    font-size: 1.2rem;
+    position: relative; /* 使名稱定位 */
+    margin-top: 10px;
+}
+
+/* 美化「幸運好物」標題 */
+.lucky-item .lucky-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+/* 顯示名稱在圖片正上方 */
+.lucky-item .lucky-name {
+    position: absolute;
+    top: -20px; /* 上移名稱至圖片上方 */
+    left: 50%;
+    transform: translateX(-50%); /* 中央對齊 */
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 美化「幸運好物」圖片 */
+.lucky-item img {
+    display: block;
+    margin: 20px auto 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 滑鼠移至圖片上的效果 */
+.lucky-item img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+
+/* 新增：楓葉吹落效果 */
+.leaf {
+    position: fixed; /* 固定在視窗範圍，隨視窗滑動 */
+    top: -50px; /* 從視窗頂部開始 */
+    animation: fall 6s linear infinite; /* 掉落動畫 */
+    z-index: 1000; /* 確保在其他內容之上 */
+    pointer-events: none; /* 不影響點擊事件 */
+    font-size: 2rem; /* 調整葉子大小 */
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(50px) translateY(50vh) rotate(180deg);
+    }
+    100% {
+        transform: translateX(-50px) translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+
+/* 內容出現動畫 */
+.animate-content {
+    opacity: 0;
+    animation: slideInFromTop 1s ease-in forwards;
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-50px); /* 從上方滑入 */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

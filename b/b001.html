@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賣丸子頁面</title>
+
+    <!-- 引入css -->
+    <link rel="stylesheet" href="b001.css">
+</head>
+
+<body>
+    <header>
+        <h1>幸福丸滿</h1>
+    </header>
+
+    <main>
+        <section id="products">
+            <div class="product">
+                <img src="../image/flower_ball.jpg" alt="花枝丸">
+                <h2>花枝丸</h2>
+                <p>美味花枝丸，口感Q彈！</p>
+                <button class="buy-button" onclick="addToCart('花枝丸')">加入購物車</button>
+            </div>
+
+            <div class="product">
+                <img src="../image/cong_ball.jpg" alt="貢丸">
+                <h2>貢丸</h2>
+                <p>經典貢丸，味道鮮美！</p>
+                <button class="buy-button" onclick="addToCart('貢丸')">加入購物車</button>
+            </div>
+
+            <div class="product">
+                <img src="../image/fish_ball.jpg" alt="虱目魚丸">
+                <h2>虱目魚丸</h2>
+                <p>鮮美虱目魚丸，極致口感！</p>
+                <button class="buy-button" onclick="addToCart('虱目魚丸')">加入購物車</button>
+            </div>
+        </section>
+
+        <section id="cart">
+            <h2>購物車</h2>
+            <ul id="cart-list"></ul>
+            <button id="reset-cart" onclick="resetCart()">重置購物車</button>
+            <button id="checkout" onclick="checkout()">結帳</button>
+        </section>
+    </main>
+
+    <!-- 引入javascript -->
+    <script src="b001.js"></script>
+</body>
+
+<!-- 引入bootstrap -->
+<script src="../share/header.js"></script>
+
+<!-- 引入導覽列 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("../share/navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            });
+    });
+</script>
+
+</html>

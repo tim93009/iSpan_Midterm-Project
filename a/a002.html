@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>翻譯</title>
+</head>
+
+<body>
+  <div id="chat-container">
+    <!-- 語言選擇區域 -->
+    <div id="language-selection">
+      <label for="input-language">輸入語言:</label>
+      <select id="input-language">
+        <option value="en">英文</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="ja">日文</option>
+        <option value="es">西班牙文</option>
+      </select>
+      
+      <!-- 雙向箭頭按鈕 -->
+      <button id="swap-languages" title="交換語言">↔️</button> 
+
+      <label for="output-language">輸出語言:</label>
+      <select id="output-language">
+        <option value="zh-TW">繁體中文</option>
+        <option value="en">英文</option>
+        <option value="ja">日文</option>
+        <option value="es">西班牙文</option>
+      </select>
+    </div>
+
+    <!-- 翻譯 API 選擇區域 -->
+    <div id="api-selection">
+      <label for="api-source">選擇翻譯 API:</label>
+      <select id="api-source">
+        <option value="mymemory">MyMemory 翻譯</option> 
+        <option value="deepl">DeepL 翻譯</option>
+        <option value="chatgpt">ChatGPT 翻譯</option>
+        <option value="gemini">Gemini 翻譯</option>
+        <option value="claude">Claude 翻譯</option>
+      </select>
+    </div>
+
+    <!-- 剩餘使用次數顯示區域 -->
+    <div id="usage-info"></div>
+
+    <!-- 中間內容區域 -->
+    <div id="content-area">
+      <!-- 左邊：輸入區域 -->
+      <div id="input-area">
+        <textarea id="chat-input" placeholder="輸入聊天訊息..."></textarea>
+      </div>
+
+      <!-- 右邊：翻譯結果顯示區域 -->
+      <div id="output-area">
+        <div id="loading" style="display: none;">
+          <span>翻譯中...</span>
+          <div class="spinner"></div>
+        </div>
+        <div id="chat-output"></div>
+      </div>
+    </div>
+
+    <!-- 翻譯按鈕區域 -->
+    <div id="translate-input">
+      <button id="translate-button">翻譯</button>
+      <button id="clear-button">清空</button> <!-- 清空按鈕 -->
+    </div>
+  </div>
+</body>
+
+<!-- 引入bootstrap -->
+<script src="../share/header.js"></script>
+
+<!-- 引入導覽列 -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("../share/navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.body.insertAdjacentHTML('afterbegin', data);
+      });
+  });
+</script>
+
+<link rel="stylesheet" href="a002.css">
+<script src="a002.js"></script>
+
+</html>
