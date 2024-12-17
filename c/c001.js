@@ -20,7 +20,7 @@ function initializePage() {
   const addArticleBtn = document.getElementById("addArticleBtn");
   if (addArticleBtn) {
     addArticleBtn.addEventListener("click", function () {
-      window.location.href = "c001_add.html";
+      window.location.href = "./c001_add.html";
     });
   }
 }
